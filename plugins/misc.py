@@ -173,7 +173,8 @@ async def help(client, message):
             reply_markup=reply_markup,
             parse_mode='html'
         )
-    elif query.data == "eth":
+@Client.on_message(filters.command("eth"))
+async def help(client, message):
         buttons = [[ 
             InlineKeyboardButton('ɢ-ᴛʀᴀɴs', callback_data='gtrans'),
             InlineKeyboardButton('ᴜʀʟ-sʜʀᴛɴᴇʀ', callback_data='urlshort'),
@@ -197,7 +198,8 @@ async def help(client, message):
             reply_markup=reply_markup,
             parse_mode='html'
         )  
-    elif query.data == "prop":
+@Client.on_message(filters.command("prop"))
+async def help(client, message):
         buttons = [[ 
             InlineKeyboardButton('ᴊsᴏɴᴇ', callback_data='son'),
             InlineKeyboardButton('ᴘᴀsᴛᴇ', callback_data='pastes'),
