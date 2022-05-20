@@ -993,7 +993,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('𝙼𝚄𝚃𝙴', callback_data='restric')            
             ],[
             InlineKeyboardButton('𝙵𝚄𝙽', callback_data='fun'), 
-            InlineKeyboardButton('𝙳𝙴𝙿𝙻𝙾𝚈', callback_data='deploy'),
+            InlineKeyboardButton('𝙳𝙴𝙿𝙻𝙾𝚈', callback_data='fond'),
             InlineKeyboardButton('𝙿𝙸𝙽', callback_data='pin')           
             ],[
             InlineKeyboardButton('‹‹ 𝙱𝙰𝙲𝙺', callback_data='eth'),
@@ -1190,13 +1190,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=reply_markup,
             parse_mode='html'
         )         
-    elif query.data == "source":
+    elif query.data == "fond":
         buttons = [[
-            InlineKeyboardButton('⪻ ʙᴀᴄᴋ', callback_data='about')
+            InlineKeyboardButton('⪻ ʙᴀᴄᴋ', callback_data='help')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
-            text=script.SOURCE_TXT,
+            text=script.FOND_TXT,
             reply_markup=reply_markup,
             parse_mode='html'
         )
@@ -1338,16 +1338,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=reply_markup,
             parse_mode='html'
         )
-    elif query.data == "deploy":
-        buttons = [[
-            InlineKeyboardButton('⪻ ʙᴀᴄᴋ', callback_data='help')
-        ]]
-        reply_markup = InlineKeyboardMarkup(buttons)
-        await query.message.edit_text(
-            text=script.DEPLOY_TXT,
-            reply_markup=reply_markup,
-            parse_mode='html'
-        )
+    
     elif query.data == "stats":
         buttons = [[
             InlineKeyboardButton('⪻ ʙᴀᴄᴋ', callback_data='help'),
