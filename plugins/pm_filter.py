@@ -1584,13 +1584,13 @@ async def auto_filter(client, msg, spoll=False):
     if not btn:
         return
 
-        if len(btn) > 10: 
-            btns = list(split_list(btn, 10)) 
-            keyword = f"{message.chat.id}-{message.message_id}"
-            BUTTONS[keyword] = {
-                "total" : len(btns),
-                "buttons" : btns
-            }
+    if len(btn) > 10: 
+        btns = list(split_list(btn, 10)) 
+        keyword = f"{message.chat.id}-{message.message_id}"
+        BUTTONS[keyword] = {
+            "total" : len(btns),
+            "buttons" : btns
+        }
                             await client.send_message(group_id, reply_text, disable_web_page_preview=True)
                         else:
                             button = eval(btn)
