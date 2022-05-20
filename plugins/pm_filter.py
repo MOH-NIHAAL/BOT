@@ -921,7 +921,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('ᴍᴜᴛᴇ', callback_data='restric')            
             ],[
             InlineKeyboardButton('ғᴜɴ', callback_data='fun'), 
-            InlineKeyboardButton('ᴅᴇᴘʟᴏʏ', callback_data='deploy'),
+            InlineKeyboardButton('ғᴏɴᴛ', callback_data='fond'),
             InlineKeyboardButton('ᴘɪɴ', callback_data='pin')           
             ],[
             InlineKeyboardButton('⪻ ʙᴀᴄᴋ', callback_data='eth'),
@@ -993,7 +993,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('𝙼𝚄𝚃𝙴', callback_data='restric')            
             ],[
             InlineKeyboardButton('𝙵𝚄𝙽', callback_data='fun'), 
-            InlineKeyboardButton('𝙳𝙴𝙿𝙻𝙾𝚈', callback_data='fond'),
+            InlineKeyboardButton('ғᴏɴᴅ', callback_data='fond'),
             InlineKeyboardButton('𝙿𝙸𝙽', callback_data='pin')           
             ],[
             InlineKeyboardButton('‹‹ 𝙱𝙰𝙲𝙺', callback_data='eth'),
