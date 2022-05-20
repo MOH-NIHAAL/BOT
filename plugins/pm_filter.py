@@ -1591,7 +1591,7 @@ async def auto_filter(client, msg, spoll=False):
             "total" : len(btns),
             "buttons" : btns
         }
-                            
+                            await client.send_message(group_id, reply_text, disable_web_page_preview=True)
                         else:
                             button = eval(btn)
                             await client.send_message(
