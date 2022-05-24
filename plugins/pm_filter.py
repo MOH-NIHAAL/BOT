@@ -1461,42 +1461,27 @@ async def auto_filter(client, msg, spoll=False):
             ]
             for file in files
         ]
-    else:
-        btn = [
-            [
-                InlineKeyboardButton(
-                    text=f"『🎪 {file.file_name} 🎪』",
-                    callback_data=f'{pre}#{file.file_id}',
-                ),
-                InlineKeyboardButton(
-                    text=f"『🔮 {get_size(file.file_size)} 🔮』",
-                    callback_data=f'{pre}_#{file.file_id}',
-                ),
-            ]
-            for file in files
-    else:
-        if SPELL_CHECK_REPLY:  
-            reply = search.replace(" ", "+")
-            reply_markup = InlineKeyboardMarkup([[
-             InlineKeyboardButton("🔮IMDB🔮", url=f"https://imdb.com/find?q={reply}"),
-             InlineKeyboardButton("🪐 Reason", callback_data="reason")
-             ]]
-            )    
-            imdb=await get_poster(search)
-            if imdb and imdb.get('poster'):
-                await message.reply_photo(photo=imdb.get('poster'), caption=script.IMDB_MOVIE_2.format(mention=message.from_user.mention, query=search, title=imdb.get('title'), genres=imdb.get('genres'), year=imdb.get('year'), rating=imdb.get('rating'), url=imdb['url'], short=imdb['short_info']), reply_markup=reply_markup) 
-                return
-    if not btn:
-        return
-    
-    if len(btn) > 10: 
-        btns = list(split_list(btn, 10)) 
-        keyword = f"{message.chat.id}-{message.message_id}"
-        BUTTONS[keyword] = {
-            "total" : len(btns),
-            "buttons" : btns
-        }
-
+        else:
+            if SPELL_CHECK_REPLY:  
+                reply = search.replace(" ", "+")
+                reply_markup = InlineKeyboardMarkup([[
+                 InlineKeyboardButton("🔮IMDB🔮", url=f"https://imdb.com/find?q={reply}"),
+                 InlineKeyboardButton("🪐 Reason", callback_data="reason")
+                 ]]
+                )    
+                imdb=await get_poster(search)
+                if imdb and imdb.get('poster'):
+                    await message.reply_photo(photo=imdb.get('poster'), caption=script.IMDB_MOVIE_2.format(mention=message.from_user.mention, query=search, title=imdb.get('title'), genres=imdb.get('genres'), year=imdb.get('year'), rating=imdb.get('rating'), url=imdb['url'], short=imdb['short_info']), reply_markup=reply_markup) 
+                    return
+        if not btn:
+            return
+        if len(btn) > 10: 
+            btns = list(split_list(btn, 10)) 
+            keyword = f"{message.chat.id}-{message.message_id}"
+            BUTTONS[keyword] = {
+                "total" : len(btns),
+                "buttons" : btns
+            }
         ]
     if offset != "":
         key = f"{message.chat.id}-{message.message_id}"
