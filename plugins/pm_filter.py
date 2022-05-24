@@ -1473,8 +1473,7 @@ async def auto_filter(client, msg, spoll=False):
                     callback_data=f'{pre}_#{file.file_id}',
                 ),
             ]
-            for file in files
-        ],
+            for file in files:
     else:
         if SPELL_CHECK_REPLY:  
             reply = search.replace(" ", "+")
@@ -1498,7 +1497,7 @@ async def auto_filter(client, msg, spoll=False):
             "buttons" : btns
         }
 
-
+        ]
     if offset != "":
         key = f"{message.chat.id}-{message.message_id}"
         BUTTONS[key] = search
