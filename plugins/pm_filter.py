@@ -1461,7 +1461,7 @@ async def auto_filter(client, msg, spoll=False):
             ]
             for file in files
         ]
-        else:
+    else:
             if SPELL_CHECK_REPLY:  
                 reply = search.replace(" ", "+")
                 reply_markup = InlineKeyboardMarkup([[
