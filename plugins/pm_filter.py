@@ -1589,16 +1589,17 @@ async def advantage_spell_chok(msg):
                  if imdb and imdb.get('poster'):
                      await message.reply_photo(photo=imdb.get('poster'), caption=script.IMDB_MOVIE_2.format(mention=message.from_user.mention, query=search, title=imdb.get('title'), genres=imdb.get('genres'), year=imdb.get('year'), rating=imdb.get('rating'), url=imdb['url'], short=imdb['short_info']), reply_markup=reply_markup) 
                      return
-         if not btn:
-              return
-
-         if len(btn) > 10: 
-             btns = list(split_list(btn, 10)) 
-             keyword = f"{message.chat.id}-{message.message_id}"
-             BUTTONS[keyword] = {
-                 "total" : len(btns),
-                 "buttons" : btns
-             }
+    SPELL_CHECK[msg.message_id] = movielist
+    btn = [[
+        InlineKeyboardButton(
+            text=movie.strip(),
+            callback_data=f"spolling#{user}#{k}",
+        )
+    ] for k, movie in enumerate(movielist)]
+    btn.append([InlineKeyboardButton(text="Close", callback_data=f'spolling#{user}#close_spellcheck')])
+    m = await msg.reply(f"Hey, {msg.from_user.mention}!\nI couldn't find anything related to that\nDid you mean any one of these?", reply_markup=InlineKeyboardMarkup(btn))
+    await asyncio.sleep(20)
+    await m.delete()
         
 
 async def manual_filters(client, message, text=False):
