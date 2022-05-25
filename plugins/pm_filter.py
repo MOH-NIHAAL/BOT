@@ -1592,9 +1592,9 @@ async def advantage_spell_chok(msg):
        ) 
         k = await msg.reply(f"Hey, Your word <b>{search}</b> is No Movie/Series Related to the Given Word Was Found 🥺\n\n<s>Please Go to Google and Confirm the Correct Spelling 🥺🙏</s>", reply_markup=button)
         await asyncio.sleep(60)
-        await k.delete()if not btn:
-        return
-
+        await k.delete()
+if not btn:
+    return
 if len(btn) > 10: 
     btns = list(split_list(btn, 10)) 
     keyword = f"{message.chat.id}-{message.message_id}"
