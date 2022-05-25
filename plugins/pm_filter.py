@@ -1590,12 +1590,10 @@ async def advantage_spell_chok(msg):
            InlineKeyboardButton("Wikipedia ⭕️", url=f"https://en.m.wikipedia.org/w/index.php?search={search}")
         ]]
        ) 
-       imdb=await get_poster(search)
-       if imdb and imdb.get('poster'):
-           await message.reply_photo(photo=imdb.get('poster'), caption=script.IMDB_MOVIE_2.format(mention=message.from_user.mention, query=search, title=imdb.get('title'), genres=imdb.get('genres'), year=imdb.get('year'), rating=imdb.get('rating'), url=imdb['url'], short=imdb['short_info']), reply_markup=reply_markup) 
-           return
-if not btn:
-     return
+        k = await msg.reply(f"Hey, Your word <b>{search}</b> is No Movie/Series Related to the Given Word Was Found 🥺\n\n<s>Please Go to Google and Confirm the Correct Spelling 🥺🙏</s>", reply_markup=button)
+        await asyncio.sleep(60)
+        await k.delete()if not btn:
+        return
 
 if len(btn) > 10: 
     btns = list(split_list(btn, 10)) 
