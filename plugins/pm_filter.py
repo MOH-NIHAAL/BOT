@@ -1589,16 +1589,7 @@ async def advantage_spell_chok(msg):
     imdb=await get_poster(search)
     if imdb and imdb.get('poster'):
         await message.reply_photo(photo=imdb.get('poster'), caption=script.IMDB_MOVIE_2.format(mention=message.from_user.mention, query=search, title=imdb.get('title'), genres=imdb.get('genres'), year=imdb.get('year'), rating=imdb.get('rating'), url=imdb['url'], short=imdb['short_info']), reply_markup=reply_markup) 
-        return
-if not btn:
-    return
-if len(btn) > 10: 
-    btns = list(split_list(btn, 10)) 
-    keyword = f"{message.chat.id}-{message.message_id}"
-    BUTTONS[keyword] = {
-        "total" : len(btns),
-        "buttons" : btns
-    }
+        
         
 
 async def manual_filters(client, message, text=False):
