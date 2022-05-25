@@ -191,15 +191,6 @@ async def next_page(bot, query):
             ]
             for file in files
         ]
-
-    if 0 < offset <= 10:
-        off_set = 0
-    elif offset == 0:
-        off_set = None
-    else:
-        off_set = offset - 10
-    if n_offset == 0:
-       
         btn.insert(0,
             [InlineKeyboardButton(text="💢 ᴊᴏɪɴ ᴏᴜʀ ɢʀᴏᴜᴘ 💢",url="https://t.me/movie_lookam")]
         )
@@ -209,13 +200,19 @@ async def next_page(bot, query):
             InlineKeyboardButton(f'🗂️ ғɪʟᴇs : {len(files)}', 'dupe')
           ]
         )
+
+    if 0 < offset <= 10:
+        off_set = 0
+    elif offset == 0:
+        off_set = None
+    else:
+        off_set = offset - 10
+    if n_offset == 0:
         btn.append(
             [InlineKeyboardButton("⪻ ʙᴀᴄᴋ", callback_data=f"next_{req}_{key}_{off_set}"),
              InlineKeyboardButton(f"🗓️ ᴘᴀɢᴇ {round(int(offset) / 10) + 1} / {round(total / 10)}",
                                   callback_data="pages")]
         )
-        
-        
     elif off_set is None:
         btn.append(
             [InlineKeyboardButton(f"🗓️ ᴘᴀɢᴇ{round(int(offset) / 10) + 1} / {round(total / 10)}", callback_data="pages"),
@@ -513,7 +510,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                             InlineKeyboardButton("📥  ᴅᴏᴡɴʟᴏᴀᴅ ʟɪɴᴋ  📥", url = ms.link)
                         ],
                         [
-                            InlineKeyboardButton("⚠️ ᴄᴀɴɴᴏᴛ ᴀᴄᴄᴇs ❓ ᴄʟɪᴄᴋ ʜᴇʀᴇ ⚠️", url = f"{CH_LINK}")
+                            InlineKeyboardButton("⚠️ ᴄᴀɴɴᴏᴛ ᴀᴄᴄᴇss ❓ ᴄʟɪᴄᴋ ʜᴇʀᴇ ⚠️", url = f"{CH_LINK}")
                         ]
                     ]
                 )
@@ -796,23 +793,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data == "pages":
         await query.answer()
     elif query.data == "samst":
-
         buttons = [[
-
             InlineKeyboardButton('🦋 ᴄʟɪᴄᴋ ʜᴇʀᴇ ғᴏʀ ᴍᴏʀᴇ ʙᴜᴛᴛᴏɴs 🦋', callback_data='start')
-
         ]]
-
         reply_markup = InlineKeyboardMarkup(buttons)
-
         await query.message.edit_text(
-
             text=script.START_TXT.format(query.from_user.mention, temp.U_NAME, temp.B_NAME),
-
             reply_markup=reply_markup,
-
             parse_mode='html'
-
         )
     elif query.data == "start":
         buttons = [[
@@ -1031,9 +1019,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
             text=script.ABOUT_TXT.format(temp.B_NAME),
-            disable_web_page_preview = True,
             reply_markup=reply_markup,
-            parse_mode='html'
+            parse_mode='html',
+            disable_web_page_preview=True
         )
     elif query.data == "restric":
         buttons = [[
@@ -1462,57 +1450,64 @@ async def auto_filter(client, msg, spoll=False):
             for file in files
         ]
     else:
-            if SPELL_CHECK_REPLY:  
-                reply = search.replace(" ", "+")
-                reply_markup = InlineKeyboardMarkup([[
-                 InlineKeyboardButton("🔮IMDB🔮", url=f"https://imdb.com/find?q={reply}"),
-                 InlineKeyboardButton("🪐 Reason", callback_data="reason")
-                 ]]
-                )    
-                imdb=await get_poster(search)
-                if imdb and imdb.get('poster'):
-                    await message.reply_photo(photo=imdb.get('poster'), caption=script.IMDB_MOVIE_2.format(mention=message.from_user.mention, query=search, title=imdb.get('title'), genres=imdb.get('genres'), year=imdb.get('year'), rating=imdb.get('rating'), url=imdb['url'], short=imdb['short_info']), reply_markup=reply_markup) 
-                    return
-        if not btn:
-            return
-        if len(btn) > 10: 
-            btns = list(split_list(btn, 10)) 
-            keyword = f"{message.chat.id}-{message.message_id}"
-            BUTTONS[keyword] = {
-                "total" : len(btns),
-                "buttons" : btns
-            }
+        btn = [
+            [
+                InlineKeyboardButton(
+                    text=f"『🎪 {file.file_name} 🎪』",
+                    callback_data=f'{pre}#{file.file_id}',
+                ),
+                InlineKeyboardButton(
+                    text=f"『🔮 {get_size(file.file_size)} 🔮』",
+                    callback_data=f'{pre}_#{file.file_id}',
+                ),
+            ]
+    else:
+        if SPELL_CHECK_REPLY:  
+            reply = search.replace(" ", "+")
+            reply_markup = InlineKeyboardMarkup([[
+             InlineKeyboardButton("🔮IMDB🔮", url=f"https://imdb.com/find?q={reply}"),
+             InlineKeyboardButton("🪐 Reason", callback_data="reason")
+             ]]
+            )    
+            imdb=await get_poster(search)
+            if imdb and imdb.get('poster'):
+                await message.reply_photo(photo=imdb.get('poster'), caption=script.IMDB_MOVIE_2.format(mention=message.from_user.mention, query=search, title=imdb.get('title'), genres=imdb.get('genres'), year=imdb.get('year'), rating=imdb.get('rating'), url=imdb['url'], short=imdb['short_info']), reply_markup=reply_markup) 
+                return
+    if not btn:
+        return
+    if len(btn) > 10: 
+        btns = list(split_list(btn, 10)) 
+        keyword = f"{message.chat.id}-{message.message_id}"
+        BUTTONS[keyword] = {
+            "total" : len(btns),
+            "buttons" : btns
+        }
+            for file in files
         ]
+        btn.insert(0,
+            [InlineKeyboardButton(text="💢 ᴊᴏɪɴ ᴏᴜʀ ɢʀᴏᴜᴘ 💢",url="https://t.me/movie_lookam")]
+        )
+        btn.insert(1,
+          [
+            InlineKeyboardButton(f'🦋  {search}  🦋', 'dupe'),
+            InlineKeyboardButton(f'🗂️ ғɪʟᴇs : {len(files)}', 'dupe')
+          ]
+        )
+
     if offset != "":
         key = f"{message.chat.id}-{message.message_id}"
         BUTTONS[key] = search
         req = message.from_user.id if message.from_user else 0
-        btn.insert(0,
-            [InlineKeyboardButton(text="💢 ᴊᴏɪɴ ᴏᴜʀ ɢʀᴏᴜᴘ 💢",url="https://t.me/movie_lookam")]
-        )
-        btn.insert(1,
-          [
-            InlineKeyboardButton(f'🦋  {search}  🦋', 'dupe'),
-            InlineKeyboardButton(f'🗂️ ғɪʟᴇs : {len(files)}', 'dupe')
-          ]
-        )
+        
         btn.append(
             [InlineKeyboardButton(text=f"🗓️ ᴘᴀɢᴇ 1/{round(int(total_results) / 10)}", callback_data="pages"),
              InlineKeyboardButton(text="ɴᴇxᴛ ⪼", callback_data=f"next_{req}_{key}_{offset}")]
         )
+    
         
     else:
         btn.append(
             [InlineKeyboardButton(text="🗓️ ᴘᴀɢᴇ 1/1", callback_data="pages")]
-        )
-        btn.insert(0,
-            [InlineKeyboardButton(text="💢 ᴊᴏɪɴ ᴏᴜʀ ɢʀᴏᴜᴘ 💢",url="https://t.me/movie_lookam")]
-        )
-        btn.insert(1,
-          [
-            InlineKeyboardButton(f'🦋  {search}  🦋', 'dupe'),
-            InlineKeyboardButton(f'🗂️ ғɪʟᴇs : {len(files)}', 'dupe')
-          ]
         )
     imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
     TEMPLATE = settings['template']
