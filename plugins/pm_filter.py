@@ -173,7 +173,7 @@ async def next_page(bot, query):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"▫ {get_size(file.file_size)} ▸ {file.file_name}", callback_data=f'files#{file.file_id}'
+                    text=f"▫ {get_size(file.file_size)}  ▸  {file.file_name}", callback_data=f'files#{file.file_id}'
                 ),
             ]
             for file in files
@@ -191,15 +191,14 @@ async def next_page(bot, query):
             ]
             for file in files
         ]
-        btn.insert(0,
-            [InlineKeyboardButton(text="💢 ᴊᴏɪɴ ᴏᴜʀ ɢʀᴏᴜᴘ 💢",url="https://t.me/movie_lookam")]
-        )
-        btn.insert(1,
-          [
-            InlineKeyboardButton(f'🦋  {search}  🦋', 'dupe'),
-            InlineKeyboardButton(f'🗂️ ғɪʟᴇs : {len(files)}', 'dupe')
-          ]
-        )
+    btn.insert(0, 
+        [
+            InlineKeyboardButton(f'ғɪʟᴇs: {len(files)}', 'dupe'),
+            InlineKeyboardButton(f'ᴍᴏᴠɪᴇ', 'movss'),
+            InlineKeyboardButton(f'ꜱᴇʀɪᴇꜱ', 'moviis')
+        ]
+    )
+        
 
     if 0 < offset <= 10:
         off_set = 0
@@ -1010,6 +1009,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=reply_markup,
             parse_mode='html'
         )
+    elif query.data == "movss":
+        await query.answer("⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\nᴍᴏᴠɪᴇ ʀᴇǫᴜᴇꜱᴛ ꜰᴏʀᴍᴀᴛ\n⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\n\nɢᴏ ᴛᴏ ɢᴏᴏɢʟᴇ ➠ ᴛʏᴘᴇ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ ➠ ᴄᴏᴘʏ ᴄᴏʀʀᴇᴄᴛ ɴᴀᴍᴇ ➠ ᴘᴀꜱᴛᴇ ᴛʜɪꜱ ɢʀᴏᴜᴘ\n\nᴇxᴀᴍᴘʟᴇ : ᴋɢꜰ ᴄʜᴀᴘᴛᴇʀ 2  2022\n\n🚯 ᴅᴏɴᴛ ᴜꜱᴇ ➠ ':(!,./)\n\n©  ᴄɪɴᴇᴍᴀʟᴏᴏᴋᴀᴍ", show_alert=True)
+
+    elif query.data == "moviis":  
+        await query.answer("⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\nꜱᴇʀɪᴇꜱ ʀᴇǫᴜᴇꜱᴛ ꜰᴏʀᴍᴀᴛ\n⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\n\nɢᴏ ᴛᴏ ɢᴏᴏɢʟᴇ ➠ ᴛʏᴘᴇ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ ➠ ᴄᴏᴘʏ ᴄᴏʀʀᴇᴄᴛ ɴᴀᴍᴇ ➠ ᴘᴀꜱᴛᴇ ᴛʜɪꜱ ɢʀᴏᴜᴘ\n\nᴇxᴀᴍᴘʟᴇ : ʟᴏᴋɪ S01 E01\n\n🚯 ᴅᴏɴᴛ ᴜꜱᴇ ➠ ':(!,./)\n\n© ᴄɪɴᴇᴍᴀʟᴏᴏᴋᴀᴍ", show_alert=True)   
+
     elif query.data == "about":
         buttons = [[
             InlineKeyboardButton("⪻ ʙᴀᴄᴋ", callback_data='start'),
@@ -1461,7 +1466,7 @@ async def auto_filter(client, msg, spoll=False):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"▫ {get_size(file.file_size)} ▸ {file.file_name}", callback_data=f'{pre}#{file.file_id}'
+                    text=f"▫ {get_size(file.file_size)}  ▸  {file.file_name}", callback_data=f'{pre}#{file.file_id}'
                 ),
             ]
             for file in files
@@ -1481,15 +1486,13 @@ async def auto_filter(client, msg, spoll=False):
     
             for file in files
         ]
-        btn.insert(0,
-            [InlineKeyboardButton(text="💢 ᴊᴏɪɴ ᴏᴜʀ ɢʀᴏᴜᴘ 💢",url="https://t.me/movie_lookam")]
-        )
-        btn.insert(1,
-          [
-            InlineKeyboardButton(f'🦋  {search}  🦋', 'dupe'),
-            InlineKeyboardButton(f'🗂️ ғɪʟᴇs : {len(files)}', 'dupe')
-          ]
-        )
+    btn.insert(0, 
+        [
+            InlineKeyboardButton(f'ғɪʟᴇs: {len(files)}', 'dupe'),
+            InlineKeyboardButton(f'ᴍᴏᴠɪᴇ', 'movss'),
+            InlineKeyboardButton(f'ꜱᴇʀɪᴇꜱ', 'moviis')
+        ]
+    )
 
     if offset != "":
         key = f"{message.chat.id}-{message.message_id}"
