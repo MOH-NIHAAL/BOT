@@ -1623,11 +1623,11 @@ async def advantage_spell_chok(msg):
     ],[
         InlineKeyboardButton("🇮🇳 ᴛʀᴀɴsʟᴀᴛᴇ ᴛᴏ ᴍᴀʟᴀʏᴀʟᴀᴍ 🇮🇳", callback_data="malspell")
     ]]
-     k=await msg.reply_photo(photo="https://telegra.ph/file/4bb1968bd091453b0070c.jpg", caption=script.SPELL_CHECK_ENG, reply_markup=InlineKeyboardMarkup(btn))    
-     await asyncio.sleep(40)
-     await k.delete()
-     await msg.delete()
-     return
+    k=await msg.reply_photo(photo="https://telegra.ph/file/4bb1968bd091453b0070c.jpg", caption=script.SPELL_CHECK_ENG, reply_markup=InlineKeyboardMarkup(btn))    
+    await asyncio.sleep(40)
+    await k.delete()
+    await msg.delete()
+    return
         
 
 async def manual_filters(client, message, text=False):
