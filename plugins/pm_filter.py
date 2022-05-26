@@ -1052,7 +1052,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         ],[
             InlineKeyboardButton("🇺🇸 ᴛʀᴀɴsʟᴀᴛᴇ ᴛᴏ ᴇɴɢʟɪꜱʜ 🇺🇸", callback_data="engspell")
         ]] 
-        await query.message.edit_text(script.SPELL_CHECK_MAL, reply_markup=InlineKeyboardMarkup(btn))
+        await query.message.edit_text(script.MALAYALMSPELL_TXT, reply_markup=InlineKeyboardMarkup(btn))
     elif query.data == "engspell":
         btn = [[
             InlineKeyboardButton('🔍 ɢᴏᴏɢʟᴇ 🔎', url=f'https://google.com/search?q='),
@@ -1060,7 +1060,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         ],[
             InlineKeyboardButton("🇮🇳 ᴛʀᴀɴsʟᴀᴛᴇ ᴛᴏ ᴍᴀʟᴀʏᴀʟᴀᴍ 🇮🇳", callback_data="malspell")
         ]] 
-        await query.message.edit_text(script.SPELL_CHECK_ENG, reply_markup=InlineKeyboardMarkup(btn))
+        await query.message.edit_text(script.MALAYALMSPELL_TXT, reply_markup=InlineKeyboardMarkup(btn))
         
     elif query.data == "whois":
         buttons = [[
