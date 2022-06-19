@@ -51,3 +51,4 @@ ffmpeg
 Pillow
 ujson
 pyyaml==6.0; python_version >= "3.6"
+cachetools==5.1.0; python_version >= "3.7" and python_version < "4.0"
